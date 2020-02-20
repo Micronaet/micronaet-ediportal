@@ -25,7 +25,7 @@ import sys
 import erppeek
 import xlrd
 import xlsxwriter
-import ConfigParser
+import configparser
 
 
 # -----------------------------------------------------------------------------
