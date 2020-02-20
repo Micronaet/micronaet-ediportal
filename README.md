@@ -1,2 +1,6 @@
-# micronaet-ediportal
-EDI Portal for manual insert order
+============
+# EDI Portal
+============
+
+Import order from EDI Portal to account program
+
