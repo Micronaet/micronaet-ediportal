@@ -78,11 +78,13 @@ for row in open(customer_csv, 'r'):
     # Create record:    
     data = {
         'name': name,
+        'etl_import': True
         }
 
     # Search partner name:    
     partner_ids = partner_pool.search([
         ('name', '=', name),
+        ('etl_import', '=', True),
         ])
         
     if partner_ids:
