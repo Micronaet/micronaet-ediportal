@@ -31,9 +31,6 @@ import pdb; pdb.set_trace()
 # -----------------------------------------------------------------------------
 # Read configuration parameter:
 # -----------------------------------------------------------------------------
-# Parameters:
-file_csv = './data/customer.csv'
-
 # From config file:
 cfg_filename = os.path.expanduser('~/openerp.cfg')
 cfg_file = os.path.expanduser(cfg_filename)
