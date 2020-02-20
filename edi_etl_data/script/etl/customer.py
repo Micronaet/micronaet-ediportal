@@ -27,7 +27,6 @@ import xlrd
 import xlsxwriter
 import configparser
 
-import pdb; pdb.set_trace()
 # -----------------------------------------------------------------------------
 # Read configuration parameter:
 # -----------------------------------------------------------------------------
