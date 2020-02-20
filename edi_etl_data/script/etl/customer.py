@@ -60,7 +60,7 @@ for row in open(customer_csv, 'r'):
     # Create record:    
     data = {
         'name': name,
-        'etl_import': True
+        'etl_import': True,
         'customer_code': customer_code,
         }
 
