@@ -35,8 +35,10 @@ import configparser
 file_csv = './data/customer.csv'
 
 # From config file:
-cfg_file = os.path.expanduser('../openerp.cfg')
+cfg_filename = '../openerp.cfg'
+cfg_file = os.path.expanduser(cfg_filename)
 
+print('Read parameters from: %s' % cfg_filename)
 config = configparser.ConfigParser()
 config.read([cfg_file])
 
