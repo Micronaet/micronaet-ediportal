@@ -88,10 +88,10 @@ for row in open(customer_csv, 'r'):
         ])
         
     if partner_ids:
-        print '%s. Update partner %s\n' % (i, name)        
+        print('%s. Update partner %s\n' % (i, name))
         # partner_pool.write(partner_ids, data)
     else:    
-        print '%s. Create partner %s\n' % (i, name)        
+        print('%s. Create partner %s\n' % (i, name))        
         # partner_pool.create(data)
 
 
