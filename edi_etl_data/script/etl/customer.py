@@ -43,6 +43,7 @@ odoo = erppeek.Client(
     
 # Pool used:
 partner_pool = odoo.model('res.partner')
+product_pool = odoo.model('product.template')
 
 # -----------------------------------------------------------------------------
 # Customer:
@@ -54,24 +55,29 @@ for row in open(customer_csv, 'r'):
     
     # Columns:
     name = row[:50]
+    customer_code = row[50:60]
 
     # Create record:    
     data = {
         'name': name,
         'etl_import': True
+        'customer_code': customer_code,
         }
 
     # Search partner name:    
     partner_ids = partner_pool.search([
-        ('name', '=', name),
+        ('customer_code', '=', customer_code),
         ('etl_import', '=', True),
         ])
         
     if partner_ids:
         print('%s. Update partner %s\n' % (i, name))
-        # partner_pool.write(partner_ids, data)
+        #partner_pool.write(partner_ids, data)
     else:    
         print('%s. Create partner %s\n' % (i, name))        
-        # partner_pool.create(data)
+        #partner_pool.create(data)
 
+# -----------------------------------------------------------------------------
+# Product:
+# -----------------------------------------------------------------------------
 
