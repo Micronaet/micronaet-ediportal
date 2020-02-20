@@ -48,6 +48,7 @@ product_pool = odoo.model('product.template')
 # -----------------------------------------------------------------------------
 # Customer:
 # -----------------------------------------------------------------------------
+"""
 i = 0
 print('Read Customer CSV file: %s' % customer_csv)
 for row in open(customer_csv, 'r'):    
@@ -76,7 +77,7 @@ for row in open(customer_csv, 'r'):
     else:    
         print('%s. Create partner %s\n' % (i, name))        
         #partner_pool.create(data)
-
+"""
 # -----------------------------------------------------------------------------
 # Product:
 # -----------------------------------------------------------------------------
