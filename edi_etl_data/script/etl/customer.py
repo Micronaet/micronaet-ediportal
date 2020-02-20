@@ -68,7 +68,7 @@ partner_pool = odoo.model('res.partner')
 # Customer:
 # -----------------------------------------------------------------------------
 i = 0
-print 'Read Customer CSV file: %s' % customer_csv
+print('Read Customer CSV file: %s' % customer_csv)
 for row in open(customer_csv, 'r'):    
     i += 1
     
