@@ -20,4 +20,9 @@ class ResPartner(models.Model):
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
     etl_import = fields.Boolean('ETL Import')
+    
+    # Account reference:
+    customer_code = fields.Char('Customer code', size=9)
+    destination_code = fields.Char('Destination code', size=9)
+    supplier_code = fields.Char('Supplier code', size=9)
 
