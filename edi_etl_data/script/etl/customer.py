@@ -22,7 +22,14 @@ cfg_file = os.path.expanduser(cfg_filename)
 def get_text(value):
     """ Extract clean text
     """
-    return value.strip()
+    res = ''
+    for c in value.strip():
+        if ord(c) < 127:
+            res += c
+        else:
+            res += '#'   
+            
+    return res
 
 def get_float(value):
     """ Extract fload from text
