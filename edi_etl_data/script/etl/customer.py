@@ -44,7 +44,7 @@ odoo = erppeek.Client(
 # Pool used:
 partner_pool = odoo.model('res.partner')
 product_pool = odoo.model('product.template')
-
+pricelist_pool = odoo.model('res.partner.pricelist')
 # -----------------------------------------------------------------------------
 # Customer:
 # -----------------------------------------------------------------------------
@@ -122,3 +122,45 @@ for line in open(customer_csv, 'r'):
         print('%s. Create destination %s\n' % (i, name))        
         destination_id = partner_pool.create(data).id
 
+    # -----------------------------------------------------------------------------
+    # Price list (product):
+    # -----------------------------------------------------------------------------
+    # Search destination name:    
+    partner_ids = partner_pool.search([
+        ('custumer_code', '=', custumer_code),
+        ])
+        
+    if partner_ids:
+        print('%s. Update partner %s\n' % (i, name))
+        partner_pool.write(partner_id, product_id)
+        partner_id = partner_ids[0]
+    else:    
+        print('%s. Create partner %s\n' % (i, name))        
+        partner_id = partner_pool.create(data).id
+
+    product_ids = product_pool.search([
+        ('default_code', '=', default_code),
+        ])
+        
+    if product_ids:
+        print('%s. Update product %s\n' % (i, name))
+        product_pool.write(product_id, data)
+        product_id = product_ids[0]
+    else:    
+        print('%s. Create product %s\n' % (i, name))        
+        product_id = product_pool.create(data).id
+        
+        
+    pricelist_ids = pricelist_pool.search([
+        ('price_list', '=', price_list),
+        ])
+        
+    if pricelist_ids:
+        print('%s. Update pricelist %s\n' % (i, name))
+        pricelist_pool.write(partner_id, product_id)
+        pricelist_id = pricelist_ids[0]
+    else:    
+        print('%s. Create pricelist %s\n' % (i, name))        
+        pricelsit_id = pricelist_pool.create(data).id
+
+       
