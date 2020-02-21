@@ -79,7 +79,7 @@ i = 0
 print('Read Customer CSV file: %s' % customer_csv)
 
 import pdb; pdb.set_trace()
-for line in pandas.read_csv('file_name.csv', engine='python'): #open(customer_csv, 'r'):    
+for line in pandas.read_csv(customer_csv, engine='python'): #open(customer_csv, 'r'):    
     i += 1
     
     # Columns:
