@@ -25,4 +25,19 @@ class ResPartner(models.Model):
     customer_code = fields.Char('Customer code', size=9)
     destination_code = fields.Char('Destination code', size=9)
     supplier_code = fields.Char('Supplier code', size=9)
+    
+class ResPartnerPricelist(models.Model):
+    """ Model name: Res Partner Pricelist
+    """
+    _name = 'res.partner.pricelist'
+    _description = 'Partner pricelist'
+    _rec_name = 'product_id'
+
+    # -------------------------------------------------------------------------
+    #                                   COLUMNS:
+    # -------------------------------------------------------------------------
+    # Account reference:
+    partner_id = fields.Many2one('res.partner', 'Customer')
+    product_id = fields.Many2one('product.tempate', 'Product')
+    lst_price = fields.Float('List price')
 

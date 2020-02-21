@@ -65,7 +65,9 @@ for line in open(customer_csv, 'r'):
         'customer_code': customer_code,
         'is_company': True,
         'customer' : True,
-        
+        'street': False,
+        'zip': False,
+        'city': False,
         }
 
     # Search partner name:    
@@ -92,17 +94,17 @@ for line in open(customer_csv, 'r'):
     street = row[2].strip()
     zip_code = row[3].strip()    
     city = row[4].strip()
-    name = destination_code
+    name = row [6].strip()
     
     # Create record:    
     data = {
         'parent_id': partner_id,
-        'name': name,
         'etl_import': True,
         'destination_code': destination_code,
         'street': street,
         'zip': zip_code,
         'city': city,
+        'name': name,
         'type': 'delivery',
         }
 
