@@ -142,11 +142,11 @@ for line in file_data:
         ])
         
     if destination_ids:
-        print '%s. Update destination %s' % (i, name)
+        print '   Update destination %s' % name
         partner_pool.write(destination_ids, data)
         destination_id = destination_ids[0]
     else:    
-        print '%s. Create destination %s' % (i, name)
+        print '   Create destination %s' % name
         destination_id = partner_pool.create(data).id
 
 # -----------------------------------------------------------------------------
