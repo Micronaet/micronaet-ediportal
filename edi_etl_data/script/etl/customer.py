@@ -16,6 +16,25 @@ import configparser
 cfg_filename = os.path.expanduser('~/openerp.cfg')
 cfg_file = os.path.expanduser(cfg_filename)
 
+# -----------------------------------------------------------------------------
+# Utility:
+# -----------------------------------------------------------------------------
+def get_text(value):
+    """ Extract clean text
+    """
+    return value.strip()
+
+def get_float(value):
+    """ Extract fload from text
+    """
+    value = (value or '').strip()
+    value = value.replace(',', '.')
+    try:  
+        return float(value)
+    except:
+        print 'Error convert to float: %s' % value
+        return 0.0    
+
 print('Read parameters from: %s' % cfg_filename)
 config = configparser.ConfigParser()
 config.read([cfg_file])
@@ -45,10 +64,10 @@ odoo = erppeek.Client(
 partner_pool = odoo.model('res.partner')
 product_pool = odoo.model('product.template')
 pricelist_pool = odoo.model('res.partner.pricelist')
+
 # -----------------------------------------------------------------------------
 # Customer:
 # -----------------------------------------------------------------------------
-
 i = 0
 print('Read Customer CSV file: %s' % customer_csv)
 for line in open(customer_csv, 'r'):    
@@ -56,8 +75,9 @@ for line in open(customer_csv, 'r'):
     
     # Columns:
     row = line.split(';')
-    customer_code = row[0].strip()
-    name = customer_code
+    customer_code = get_text(row[0])
+    name = customer_code # TODO 
+
     # Create record:    
     data = {
         'name': name,
@@ -84,17 +104,15 @@ for line in open(customer_csv, 'r'):
         print('%s. Create partner %s\n' % (i, name))        
         partner_id = partner_pool.create(data).id
 
-    # -----------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # Destination:
-    # -----------------------------------------------------------------------------
-
-    # Columns:
- 
-    destination_code = row[1].strip()
-    street = row[2].strip()
-    zip_code = row[3].strip()    
-    city = row[4].strip()
-    name = row [6].strip()
+    # -------------------------------------------------------------------------
+    # Columns: 
+    destination_code = get_text(row[1])
+    street = get_text(row[2])
+    zip_code = get_text(row[3])    
+    city = get_text(row[4])
+    name = get_text(row [6])
     
     # Create record:    
     data = {
@@ -122,45 +140,68 @@ for line in open(customer_csv, 'r'):
         print('%s. Create destination %s\n' % (i, name))        
         destination_id = partner_pool.create(data).id
 
-    # -----------------------------------------------------------------------------
-    # Price list (product):
-    # -----------------------------------------------------------------------------
-    # Search destination name:    
+# -----------------------------------------------------------------------------
+# Price list (product):
+# -----------------------------------------------------------------------------
+i = 0
+print('Read Pricelist CSV file: %s' % pricelist_csv)
+for line in open(pricelist_csv, 'r'):    
+    i += 1
+    
+    # Columns:
+    row = line.split(';')
+    customer_code = get_text(row[0])
+    default_code = get_text(row[1])
+    product_name = get_text(row[2])
+    lst_price = get_float(row[4])
+    # TODO UOM
+
+    # -------------------------------------------------------------------------
+    # Search customer:    
+    # -------------------------------------------------------------------------
     partner_ids = partner_pool.search([
-        ('custumer_code', '=', custumer_code),
+        ('custumer_code', '=', customer_code),
         ])
         
     if partner_ids:
-        print('%s. Update partner %s\n' % (i, name))
-        partner_pool.write(partner_id, product_id)
         partner_id = partner_ids[0]
     else:    
-        print('%s. Create partner %s\n' % (i, name))        
-        partner_id = partner_pool.create(data).id
-
+        print('%s. Partner code not found: %s' % (i, customer_code))        
+        continue
+        
+    # -------------------------------------------------------------------------
+    # Search product: 
+    # -------------------------------------------------------------------------
     product_ids = product_pool.search([
         ('default_code', '=', default_code),
         ])
-        
+
     if product_ids:
-        print('%s. Update product %s\n' % (i, name))
-        product_pool.write(product_id, data)
         product_id = product_ids[0]
     else:    
-        print('%s. Create product %s\n' % (i, name))        
-        product_id = product_pool.create(data).id
-        
+        print('%s. Create product %s\n' % (i, default_code))
+        product_id = product_pool.create({
+            'default_code': default_code,
+            'name': product_name,
+            }).id
         
     pricelist_ids = pricelist_pool.search([
-        ('price_list', '=', price_list),
+        ('partner_id', '=', partner_id),
+        ('product_id', '=', product_id),
         ])
-        
-    if pricelist_ids:
-        print('%s. Update pricelist %s\n' % (i, name))
-        pricelist_pool.write(partner_id, product_id)
-        pricelist_id = pricelist_ids[0]
-    else:    
-        print('%s. Create pricelist %s\n' % (i, name))        
-        pricelsit_id = pricelist_pool.create(data).id
 
-       
+    data = {
+        'partner_id': partner_id,
+        'product_id': product_id,
+        'lst_price': lst_price,
+        }        
+    if pricelist_ids:
+        pricelist_pool.write(pricelist_ids, data)
+        print '%s. Pricelist: %s - %s updated' % (
+            i, customer_code, default_code)
+    else:    
+        pricelist_pool.create(data)
+        print '%s. Pricelist: %s - %s created' % (
+            i, customer_code, default_code)
+
+           
