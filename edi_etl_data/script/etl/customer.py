@@ -75,12 +75,11 @@ pricelist_pool = odoo.model('res.partner.pricelist')
 # Customer:
 # -----------------------------------------------------------------------------
 partner_db = {}
-
-i = 0
 print 'Read Customer CSV file: %s' % customer_csv
 
-#file_data = pandas.read_csv(customer_csv, encoding='unicode_escape')
+i = 0
 file_data = open(customer_csv, 'r')
+file_data = [] # TODO remove (jump import customer)
 for line in file_data:
     i += 1
     
