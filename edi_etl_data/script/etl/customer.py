@@ -42,7 +42,7 @@ def get_float(value):
         return 0.0    
 
 print 'Read parameters from: %s' % cfg_filename
-config = configparser.ConfigParser()
+config = ConfigParser.ConfigParser()
 config.read([cfg_file])
 
 dbname = config.get('dbaccess', 'dbname')
