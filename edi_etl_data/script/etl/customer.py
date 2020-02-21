@@ -184,6 +184,7 @@ for line in open(pricelist_csv, 'r'):
     # -------------------------------------------------------------------------
     # Search product: 
     # -------------------------------------------------------------------------
+    import pdb; pdb.set_trace()
     product_ids = product_pool.search([
         ('default_code', '=', default_code),
         ])
