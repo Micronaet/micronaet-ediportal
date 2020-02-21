@@ -82,6 +82,9 @@ print('Read Customer CSV file: %s' % customer_csv)
 file_data = open(customer_csv, 'r')
 import pdb; pdb.set_trace()
 for line in file_data:
+    print line
+    continue
+    
     i += 1
     
     # Columns:
