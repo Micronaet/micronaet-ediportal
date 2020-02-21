@@ -32,7 +32,7 @@ def get_float(value):
     try:  
         return float(value)
     except:
-        print 'Error convert to float: %s' % value
+        print('Error convert to float: %s' % value)
         return 0.0    
 
 print('Read parameters from: %s' % cfg_filename)
@@ -76,7 +76,7 @@ for line in open(customer_csv, 'r'):
     # Columns:
     row = line.split(';')
     customer_code = get_text(row[0])
-    name = customer_code # TODO 
+    name = get_text(row[7]) 
 
     # Create record:    
     data = {
@@ -197,11 +197,11 @@ for line in open(pricelist_csv, 'r'):
         }        
     if pricelist_ids:
         pricelist_pool.write(pricelist_ids, data)
-        print '%s. Pricelist: %s - %s updated' % (
-            i, customer_code, default_code)
+        print('%s. Pricelist: %s - %s updated' % (
+            i, customer_code, default_code))
     else:    
         pricelist_pool.create(data)
-        print '%s. Pricelist: %s - %s created' % (
-            i, customer_code, default_code)
+        print('%s. Pricelist: %s - %s created' % (
+            i, customer_code, default_code))
 
            
