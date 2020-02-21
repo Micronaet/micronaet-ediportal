@@ -4,6 +4,9 @@
 customer_csv = '/home/odoo/script/etl/data/testdestgfd.csv'
 
 file_data = open(customer_csv, 'r')
+i = 0 
 for line in file_data:
+    i += 1
+    print i
     print(line)
     
