@@ -99,9 +99,6 @@ for line in file_data:
             'customer_code': customer_code,
             'is_company': True,
             'customer' : True,
-            'street': False,
-            'zip': False,
-            'city': False,
             }
 
         # Search partner name:    
