@@ -39,5 +39,5 @@ class ResPartnerPricelist(models.Model):
     # Account reference:
     partner_id = fields.Many2one('res.partner', 'Customer')
     product_id = fields.Many2one('product.tempate', 'Product')
-    lst_price = fields.Float('List price')
+    lst_price = fields.Float('List price', digits=(16, 3))
 
