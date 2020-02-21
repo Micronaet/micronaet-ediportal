@@ -7,7 +7,7 @@ import erppeek
 import xlrd
 import xlsxwriter
 import configparser
-
+import pandas
 
 # -----------------------------------------------------------------------------
 # Read configuration parameter:
@@ -77,7 +77,9 @@ pricelist_pool = odoo.model('res.partner.pricelist')
 # -----------------------------------------------------------------------------
 i = 0
 print('Read Customer CSV file: %s' % customer_csv)
-for line in open(customer_csv, 'r'):    
+
+import pdb; pdb.set_trace()
+for line in pd.read_csv('file_name.csv', engine='python'): #open(customer_csv, 'r'):    
     i += 1
     
     # Columns:
@@ -104,11 +106,11 @@ for line in open(customer_csv, 'r'):
         ])
         
     if partner_ids:
-        print('%s. Update partner %s\n' % (i, name))
+        print('%s. Update partner %s' % (i, name))
         partner_pool.write(partner_ids, data)
         partner_id = partner_ids[0]
     else:    
-        print('%s. Create partner %s\n' % (i, name))        
+        print('%s. Create partner %s' % (i, name))        
         partner_id = partner_pool.create(data).id
 
     # -------------------------------------------------------------------------
@@ -140,11 +142,11 @@ for line in open(customer_csv, 'r'):
         ])
         
     if destination_ids:
-        print('%s. Update destination %s\n' % (i, name))
+        print('%s. Update destination %s' % (i, name))
         partner_pool.write(destination_ids, data)
         destination_id = destination_ids[0]
     else:    
-        print('%s. Create destination %s\n' % (i, name))        
+        print('%s. Create destination %s' % (i, name))        
         destination_id = partner_pool.create(data).id
 
 # -----------------------------------------------------------------------------
