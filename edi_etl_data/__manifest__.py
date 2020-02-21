@@ -17,7 +17,7 @@
         'sale',
         ],
     'data': [
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/edi_view.xml',
         #'data/color_data.xml',        
         ],
