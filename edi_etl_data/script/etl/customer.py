@@ -68,7 +68,7 @@ odoo = erppeek.Client(
     
 # Pool used:
 partner_pool = odoo.model('res.partner')
-product_pool = odoo.model('product.template')
+product_pool = odoo.model('product.product')
 pricelist_pool = odoo.model('res.partner.pricelist')
 
 # -----------------------------------------------------------------------------
