@@ -1,39 +1,43 @@
 <?xml version="1.0"?>
 <odoo>
-    <record model="ir.ui.view" id="view_model_name_tree">
-        <field name="name">model.name.tree</field>
-        <field name="model">model.name</field>
+    <record model="ir.ui.view" id="view_res_partner_pricelist_tree">
+        <field name="name">res.partner.pricelist.tree</field>
+        <field name="model">res.partner.pricelist</field>
         <field name="arch" type="xml">
-            <tree string="String">
-                <field name="name" />
+            <tree string="Pricelist">
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="lst_price" />                
             </tree>
         </field>
     </record>
-    <record model="ir.ui.view" id="view_model_name_form">
-        <field name="name">model.name.form</field>
-        <field name="model">model.name</field>
+    <record model="ir.ui.view" id="view_res_partner_pricelist_form">
+        <field name="name">res.partner.pricelist.form</field>
+        <field name="model">res.partner.pricelist</field>
         <field name="arch" type="xml">
-            <form string="String">        
+            <form string="Pricelist">        
                 <sheet>
                     <group col="4" colspan="4">
-                        
+                    <field name="partner_id" />
+                    <field name="product_id" />
+                    <field name="lst_price" /> 
                     </group>
                 </sheet>        
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_open_view_form">
-        <field name="name">Untitled</field>
+    <record model="ir.actions.act_window" id="action_view_res_partner_pricelist_tree">
+        <field name="name">Pricelist</field>
         <field name="res_model">openerp.model</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="view_model_name_form"/>
+        <field name="view_id" ref="view_res_partner_pricelist_tree"/>
         <field name="context">{}</field>
         <field name="domain">[]</field>
     </record>
     <menuitem 
         parent="parent_menu" 
-        id="menu_action_openerp_model_tree" 
-        action="action_openerp_model_tree"/>
+        id="menu_view_res_partner_pricelist_tree" 
+        action="action_view_res_partner_pricelist_tree"/>
     
 </odoo>
