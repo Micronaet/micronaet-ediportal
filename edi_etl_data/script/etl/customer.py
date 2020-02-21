@@ -6,8 +6,7 @@ import sys
 import erppeek
 import xlrd
 import xlsxwriter
-import configparser
-import pandas
+import ConfigParser
 
 # -----------------------------------------------------------------------------
 # Read configuration parameter:
@@ -39,10 +38,10 @@ def get_float(value):
     try:  
         return float(value)
     except:
-        print('Error convert to float: %s' % value)
+        print 'Error convert to float: %s' % value
         return 0.0    
 
-print('Read parameters from: %s' % cfg_filename)
+print 'Read parameters from: %s' % cfg_filename
 config = configparser.ConfigParser()
 config.read([cfg_file])
 
@@ -76,15 +75,11 @@ pricelist_pool = odoo.model('res.partner.pricelist')
 # Customer:
 # -----------------------------------------------------------------------------
 i = 0
-print('Read Customer CSV file: %s' % customer_csv)
+print 'Read Customer CSV file: %s' % customer_csv
 
 #file_data = pandas.read_csv(customer_csv, encoding='unicode_escape')
 file_data = open(customer_csv, 'r')
-import pdb; pdb.set_trace()
 for line in file_data:
-    print(line)
-    continue
-    
     i += 1
     
     # Columns:
@@ -111,11 +106,11 @@ for line in file_data:
         ])
         
     if partner_ids:
-        print('%s. Update partner %s' % (i, name))
+        print '%s. Update partner %s' % (i, name)
         partner_pool.write(partner_ids, data)
         partner_id = partner_ids[0]
     else:    
-        print('%s. Create partner %s' % (i, name))        
+        print '%s. Create partner %s' % (i, name)
         partner_id = partner_pool.create(data).id
 
     # -------------------------------------------------------------------------
@@ -147,18 +142,18 @@ for line in file_data:
         ])
         
     if destination_ids:
-        print('%s. Update destination %s' % (i, name))
+        print '%s. Update destination %s' % (i, name)
         partner_pool.write(destination_ids, data)
         destination_id = destination_ids[0]
     else:    
-        print('%s. Create destination %s' % (i, name))        
+        print '%s. Create destination %s' % (i, name)
         destination_id = partner_pool.create(data).id
 
 # -----------------------------------------------------------------------------
 # Price list (product):
 # -----------------------------------------------------------------------------
 i = 0
-print('Read Pricelist CSV file: %s' % pricelist_csv)
+print 'Read Pricelist CSV file: %s' % pricelist_csv
 for line in open(pricelist_csv, 'r'):    
     i += 1
     
@@ -180,7 +175,7 @@ for line in open(pricelist_csv, 'r'):
     if partner_ids:
         partner_id = partner_ids[0]
     else:    
-        print('%s. Partner code not found: %s' % (i, customer_code))        
+        print '%s. Partner code not found: %s' % (i, customer_code)
         continue
         
     # -------------------------------------------------------------------------
@@ -193,7 +188,7 @@ for line in open(pricelist_csv, 'r'):
     if product_ids:
         product_id = product_ids[0]
     else:    
-        print('%s. Create product %s\n' % (i, default_code))
+        print '%s. Create product %s\n' % (i, default_code)
         product_id = product_pool.create({
             'default_code': default_code,
             'name': product_name,
@@ -211,11 +206,11 @@ for line in open(pricelist_csv, 'r'):
         }        
     if pricelist_ids:
         pricelist_pool.write(pricelist_ids, data)
-        print('%s. Pricelist: %s - %s updated' % (
-            i, customer_code, default_code))
+        print '%s. Pricelist: %s - %s updated' % (
+            i, customer_code, default_code)
     else:    
         pricelist_pool.create(data)
-        print('%s. Pricelist: %s - %s created' % (
-            i, customer_code, default_code))
+        print '%s. Pricelist: %s - %s created' % (
+            i, customer_code, default_code)
 
            
