@@ -6,7 +6,6 @@ import sys
 import erppeek
 import xlrd
 import xlsxwriter
-import ConfigParser
 
 # -----------------------------------------------------------------------------
 # Read configuration parameter:
@@ -14,6 +13,14 @@ import ConfigParser
 # From config file:
 cfg_filename = os.path.expanduser('~/openerp.cfg')
 cfg_file = os.path.expanduser(cfg_filename)
+
+try:  # Python 2.7
+    import ConfigParser
+except:  # Python 3
+    import configparser as ConfigParser
+print('Read parameters from: %s' % cfg_filename)
+config = ConfigParser.ConfigParser()
+
 
 # -----------------------------------------------------------------------------
 # Utility:
@@ -38,11 +45,9 @@ def get_float(value):
     try:  
         return float(value)
     except:
-        print 'Error convert to float: %s' % value
+        print('Error convert to float: %s' % value)
         return 0.0    
 
-print 'Read parameters from: %s' % cfg_filename
-config = ConfigParser.ConfigParser()
 config.read([cfg_file])
 
 dbname = config.get('dbaccess', 'dbname')
@@ -75,7 +80,7 @@ pricelist_pool = odoo.model('res.partner.pricelist')
 # Customer:
 # -----------------------------------------------------------------------------
 partner_db = {}
-print 'Read Customer CSV file: %s' % customer_csv
+print('Read Customer CSV file: %s' % customer_csv)
 
 i = 0
 file_data = open(customer_csv, 'r')
@@ -107,11 +112,11 @@ for line in file_data:
             ])
             
         if partner_ids:
-            print '%s. Update partner %s' % (i, name)
+            print('%s. Update partner %s' % (i, name))
             partner_pool.write(partner_ids, data)
             partner_id = partner_ids[0]
         else:    
-            print '%s. Create partner %s' % (i, name)
+            print('%s. Create partner %s' % (i, name))
             partner_id = partner_pool.create(data).id
         if customer_code not in partner_db:
             partner_db[customer_code] = partner_id
@@ -145,18 +150,18 @@ for line in file_data:
         ])
         
     if destination_ids:
-        print '   Update destination %s' % name
+        print('   Update destination %s' % name)
         partner_pool.write(destination_ids, data)
         destination_id = destination_ids[0]
     else:    
-        print '   Create destination %s' % name
+        print('   Create destination %s' % name)
         destination_id = partner_pool.create(data).id
 
 # -----------------------------------------------------------------------------
 # Price list (product):
 # -----------------------------------------------------------------------------
 i = 0
-print 'Read Pricelist CSV file: %s' % pricelist_csv
+print('Read Pricelist CSV file: %s' % pricelist_csv)
 for line in open(pricelist_csv, 'r'):    
     i += 1
     
@@ -178,7 +183,7 @@ for line in open(pricelist_csv, 'r'):
     if partner_ids:
         partner_id = partner_ids[0]
     else:    
-        print '%s. Partner code not found: %s' % (i, customer_code)
+        print('%s. Partner code not found: %s' % (i, customer_code))
         continue
         
     # -------------------------------------------------------------------------
@@ -191,7 +196,7 @@ for line in open(pricelist_csv, 'r'):
     if product_ids:
         product_id = product_ids[0]
     else:    
-        print '%s. Create product %s\n' % (i, default_code)
+        print('%s. Create product %s\n' % (i, default_code))
         product_id = product_pool.create({
             'default_code': default_code,
             'name': product_name,
@@ -210,11 +215,11 @@ for line in open(pricelist_csv, 'r'):
         }        
     if pricelist_ids:
         pricelist_pool.write(pricelist_ids, data)
-        print '%s. Pricelist: %s - %s updated' % (
-            i, customer_code, default_code)
+        print('%s. Pricelist: %s - %s updated' % (
+            i, customer_code, default_code))
     else:    
         pricelist_pool.create(data)
-        print '%s. Pricelist: %s - %s created' % (
-            i, customer_code, default_code)
+        print('%s. Pricelist: %s - %s created' % (
+            i, customer_code, default_code))
 
            
