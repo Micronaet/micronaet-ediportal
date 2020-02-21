@@ -176,15 +176,21 @@ for line in open(pricelist_csv, 'r'):
     # -------------------------------------------------------------------------
     # Search customer:    
     # -------------------------------------------------------------------------
-    partner_ids = partner_pool.search([
-        ('customer_code', '=', customer_code),
-        ])
-        
-    if partner_ids:
-        partner_id = partner_ids[0]
+    if customer_code in partner_db:
+        partner_id = partner_db[customer_code]
     else:    
-        print('%s. Partner code not found: %s' % (i, customer_code))
-        continue
+        partner_ids = partner_pool.search([
+            ('customer_code', '=', customer_code),
+            ])
+            
+        if partner_ids:
+            partner_id = partner_ids[0]
+        else:    
+            print('%s. Partner code not found: %s' % (i, customer_code))
+            continue
+
+        if customer_code not in partner_db:
+            partner_db[customer_code] = partner_id
         
     # -------------------------------------------------------------------------
     # Search product: 
