@@ -48,21 +48,24 @@ product_pool = odoo.model('product.template')
 # -----------------------------------------------------------------------------
 # Customer:
 # -----------------------------------------------------------------------------
-"""
+
 i = 0
 print('Read Customer CSV file: %s' % customer_csv)
-for row in open(customer_csv, 'r'):    
+for line in open(customer_csv, 'r'):    
     i += 1
     
     # Columns:
-    name = row[:50]
-    customer_code = row[50:60]
-
+    row = line.split(';')
+    customer_code = row[0].strip()
+    name = customer_code
     # Create record:    
     data = {
         'name': name,
         'etl_import': True,
         'customer_code': customer_code,
+        'is_company': True,
+        'customer' : True,
+        
         }
 
     # Search partner name:    
@@ -73,12 +76,47 @@ for row in open(customer_csv, 'r'):
         
     if partner_ids:
         print('%s. Update partner %s\n' % (i, name))
-        #partner_pool.write(partner_ids, data)
+        partner_pool.write(partner_ids, data)
+        partner_id = partner_ids[0]
     else:    
         print('%s. Create partner %s\n' % (i, name))        
-        #partner_pool.create(data)
-"""
-# -----------------------------------------------------------------------------
-# Product:
-# -----------------------------------------------------------------------------
+        partner_id = partner_pool.create(data).id
+
+    # -----------------------------------------------------------------------------
+    # Destination:
+    # -----------------------------------------------------------------------------
+
+    # Columns:
+ 
+    destination_code = row[1].strip()
+    street = row[2].strip()
+    zip_code = row[3].strip()    
+    city = row[4].strip()
+    name = destination_code
+    
+    # Create record:    
+    data = {
+        'parent_id': partner_id,
+        'name': name,
+        'etl_import': True,
+        'destination_code': destination_code,
+        'street': street,
+        'zip': zip_code,
+        'city': city,
+        'type': 'delivery',
+        }
+
+    # Search destination name:    
+    destination_ids = partner_pool.search([
+        ('destination_code', '=', destination_code),
+        ('etl_import', '=', True),
+        ])
+        
+    if destination_ids:
+        print('%s. Update destination %s\n' % (i, name))
+        partner_pool.write(destination_ids, data)
+        destination_id = destination_ids[0]
+    else:    
+        print('%s. Create destination %s\n' % (i, name))        
+        destination_id = partner_pool.create(data).id
 

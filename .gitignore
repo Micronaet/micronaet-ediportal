@@ -6,6 +6,8 @@ __pycache__/
 # Micronaet:
 ~*
 *.py~
+testdestgfd.csv  
+testpartgfd.csv
 
 # C extensions
 *.so
