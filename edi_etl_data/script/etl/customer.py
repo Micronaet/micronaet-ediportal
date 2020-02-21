@@ -79,6 +79,8 @@ i = 0
 print('Read Customer CSV file: %s' % customer_csv)
 for line in open(customer_csv, 'r'):    
     i += 1
+    if i == 66:
+        import pdb; pdb.set_trace()
     
     # Columns:
     row = line.split(';')
