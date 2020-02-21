@@ -199,8 +199,8 @@ for line in open(pricelist_csv, 'r'):
     
     import pdb; pdb.set_trace()    
     pricelist_ids = pricelist_pool.search([
-        ('partner_id', '=', partner_id),
         ('product_id', '=', product_id),
+        ('partner_id', '=', partner_id),
         ])
 
     data = {
