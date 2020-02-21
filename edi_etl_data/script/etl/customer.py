@@ -160,6 +160,7 @@ for line in file_data:
 # -----------------------------------------------------------------------------
 # Price list (product):
 # -----------------------------------------------------------------------------
+product_db = {}
 i = 0
 print('Read Pricelist CSV file: %s' % pricelist_csv)
 for line in open(pricelist_csv, 'r'):    
@@ -195,18 +196,24 @@ for line in open(pricelist_csv, 'r'):
     # -------------------------------------------------------------------------
     # Search product: 
     # -------------------------------------------------------------------------
-    product_ids = product_pool.search([
-        ('default_code', '=', default_code),
-        ])
-
-    if product_ids:
-        product_id = product_ids[0]
+    if default_code in product_db:
+        product_id = product_db[default_code]
     else:    
-        print('%s. Create product %s\n' % (i, default_code))
-        product_id = product_pool.create({
-            'default_code': default_code,
-            'name': product_name,
-            }).id
+        product_ids = product_pool.search([
+            ('default_code', '=', default_code),
+            ])
+
+        if product_ids:
+            product_id = product_ids[0]
+        else:    
+            print('%s. Create product %s\n' % (i, default_code))
+            product_id = product_pool.create({
+                'default_code': default_code,
+                'name': product_name,
+                }).id
+
+        if default_code not in product_db:
+            product_db[default_code] = product_id
     
     pricelist_ids = pricelist_pool.search([
         ('product_id', '=', product_id),
