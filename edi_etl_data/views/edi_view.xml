@@ -18,17 +18,17 @@
             <form string="Pricelist">        
                 <sheet>
                     <group col="4" colspan="4">
-                    <field name="partner_id" />
-                    <field name="product_id" />
-                    <field name="lst_price" /> 
+                        <field name="partner_id" />
+                        <field name="product_id" />
+                        <field name="lst_price" /> 
                     </group>
                 </sheet>        
             </form>
         </field>
     </record>
-    <record model="ir.actions.act_window" id="action_view_res_partner_pricelist_tree">
-        <field name="name">Pricelist</field>
-        <field name="res_model">openerp.model</field>
+    <record model="ir.actions.act_window" id="action_view_res_partner_pricelist">
+        <field name="name">Customer Pricelist</field>
+        <field name="res_model">res.partner.pricelist</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_res_partner_pricelist_tree"/>
@@ -36,8 +36,8 @@
         <field name="domain">[]</field>
     </record>
     <menuitem 
-        parent="parent_menu" 
+        parent="sale.sale_order_menu" 
         id="menu_view_res_partner_pricelist_tree" 
-        action="action_view_res_partner_pricelist_tree"/>
+        action="action_view_res_partner_pricelist"/>
     
 </odoo>
