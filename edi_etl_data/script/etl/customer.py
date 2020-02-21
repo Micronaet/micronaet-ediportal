@@ -74,6 +74,8 @@ pricelist_pool = odoo.model('res.partner.pricelist')
 # -----------------------------------------------------------------------------
 # Customer:
 # -----------------------------------------------------------------------------
+partner_db = {}
+
 i = 0
 print 'Read Customer CSV file: %s' % customer_csv
 
@@ -87,32 +89,37 @@ for line in file_data:
     customer_code = get_text(row[0])
     name = get_text(row[7]) 
 
-    # Create record:    
-    data = {
-        'name': name,
-        'etl_import': True,
-        'customer_code': customer_code,
-        'is_company': True,
-        'customer' : True,
-        'street': False,
-        'zip': False,
-        'city': False,
-        }
+    if customer_code in partner_db:
+        partner_id = partner_db[customer_code]
+    else:
+        # Create record:    
+        data = {
+            'name': name,
+            'etl_import': True,
+            'customer_code': customer_code,
+            'is_company': True,
+            'customer' : True,
+            'street': False,
+            'zip': False,
+            'city': False,
+            }
 
-    # Search partner name:    
-    partner_ids = partner_pool.search([
-        ('customer_code', '=', customer_code),
-        ('etl_import', '=', True),
-        ])
+        # Search partner name:    
+        partner_ids = partner_pool.search([
+            ('customer_code', '=', customer_code),
+            ('etl_import', '=', True),
+            ])
+            
+        if partner_ids:
+            print '%s. Update partner %s' % (i, name)
+            partner_pool.write(partner_ids, data)
+            partner_id = partner_ids[0]
+        else:    
+            print '%s. Create partner %s' % (i, name)
+            partner_id = partner_pool.create(data).id
+        if customer_code not in partner_db:
+            partner_db[customer_code] = partner_id
         
-    if partner_ids:
-        print '%s. Update partner %s' % (i, name)
-        partner_pool.write(partner_ids, data)
-        partner_id = partner_ids[0]
-    else:    
-        print '%s. Create partner %s' % (i, name)
-        partner_id = partner_pool.create(data).id
-
     # -------------------------------------------------------------------------
     # Destination:
     # -------------------------------------------------------------------------
