@@ -25,6 +25,17 @@ class ResPartner(models.Model):
     customer_code = fields.Char('Customer code', size=9)
     destination_code = fields.Char('Destination code', size=9)
     supplier_code = fields.Char('Supplier code', size=9)
+
+class ResUsers(models.Model):
+    """ Model name: Res Users
+    """
+    _inherit = 'res.users'
+
+    # -------------------------------------------------------------------------
+    #                                   COLUMNS:
+    # -------------------------------------------------------------------------
+    portal_partner_id = fields.Many2one('res.partner', 'Portal Customer')
+    
     
 class ResPartnerPricelist(models.Model):
     """ Model name: Res Partner Pricelist
