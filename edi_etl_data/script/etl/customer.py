@@ -173,7 +173,7 @@ for line in open(pricelist_csv, 'r'):
     # Search customer:    
     # -------------------------------------------------------------------------
     partner_ids = partner_pool.search([
-        ('custumer_code', '=', customer_code),
+        ('customer_code', '=', customer_code),
         ])
         
     if partner_ids:
