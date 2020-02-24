@@ -122,6 +122,7 @@ class EdiOrderWizard(models.TransientModel):
                 # -------------------------------------------------------------
                 # Create sale order:
                 # -------------------------------------------------------------
+             import pdb; pdb.set_trace()
                 order_id = order_pool.create({
                     'partner_id': self.portal_partner_id.id,
                     'user_id': self.user_id.id,
