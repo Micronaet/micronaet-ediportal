@@ -19,10 +19,15 @@
     'data': [
         'security/ir.model.access.csv',
         'views/edi_view.xml',
-        #'data/color_data.xml',        
+        # 'wizard/sale_wizard_view.xml',
+        # 'data/color_data.xml',
         ],
     'external_dependencies': {
-        'python': ['xlsxwriter', 'xlrd', 'erppeek'],
+        'python': [
+            'xlsxwriter',
+            'xlrd',
+            'erppeek',
+            ],
         },
     'application': False,
     'installable': True,
