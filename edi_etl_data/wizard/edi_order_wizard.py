@@ -96,12 +96,7 @@ class EdiOrderWizard(models.TransientModel):
         no_data = True
         start_import = False
         for row in range(ws.nrows):
-            import pdb; pdb.set_trace()
-
-            try:
-                pricelist_id = ws.cell_value(row, 0)
-            except:
-                import pdb; pdb.set_trace()
+            pricelist_id = ws.cell_value(row, 0)
 
             if not start_import and pricelist_id == 'ID':
                 start_import = True
@@ -115,7 +110,7 @@ class EdiOrderWizard(models.TransientModel):
             lst_price = ws.cell_value(row, 3)
             product_qty = ws.cell_value(row, 4)
 
-            if product_qty <= 0:
+            if not product_qty:
                 _logger.info('%s. No quantity' % row)
                 continue  # Jump empty line
             else:
