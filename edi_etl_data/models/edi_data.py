@@ -53,6 +53,7 @@ class ResUsers(models.Model):
     # -------------------------------------------------------------------------
     @api.model
     def update_all_data(self, user_id):
+        operation = 'update' if user_id else 'remove'
         # ---------------------------------------------------------------------
         # Remove portal partner from sale order:
         # ---------------------------------------------------------------------
@@ -62,6 +63,7 @@ class ResUsers(models.Model):
         orders.write({
             'user_id': user_id,
             })
+        _logger.info('%s %s sale order' % (operation, len(orders)))
 
         # ---------------------------------------------------------------------
         # Remove portal partner from pricelist:
@@ -72,7 +74,7 @@ class ResUsers(models.Model):
         pricelists.write({
             'user_id': user_id,
             })
-        return True
+        _logger.info('%s %s pricelists items' % (operation, len(pricelists)))
 
     # -------------------------------------------------------------------------
     #                                   COLUMNS:
