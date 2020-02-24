@@ -92,7 +92,7 @@ class EdiOrderWizard(models.TransientModel):
         try:
             WB = xlrd.open_workbook(filename)
         except:
-            raise exceptions.Warning(_('Cannot read XLS file')),
+            raise exceptions.Warning(_('Cannot read XLS file'))
 
         WS = WB.sheet_by_index(0)
         no_data = True
