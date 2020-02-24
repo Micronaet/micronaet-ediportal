@@ -39,13 +39,13 @@ class ResUsers(models.Model):
     def update_all_portal_partner(self):
         """ Update order and pricelist
         """
-        self.update_all_data(self, self.id)
+        self.update_all_data(self.id)
 
     @api.multi
     def remove_all_portal_partner(self):
         """ Remove reference from order and pricelist
         """
-        self.update_all_data(self, False)
+        self.update_all_data(False)
         self.portal_partner_id = False
 
     # -------------------------------------------------------------------------

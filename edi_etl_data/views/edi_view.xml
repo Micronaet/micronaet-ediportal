@@ -70,7 +70,7 @@
                 <field name="name" />
                 <field name="portal_partner_id" />
                 <button name="remove_all_portal_partner" string="Remove partner in all data" type="object" icon="fa-rotate-left" attrs="{'invisible': [('portal_partner_id','=',False)]}"/>
-                <button name="update_all_portal_partner" string="Setup partner in all data" type="object" icon="fa-refresh" attrs="{'invisible': [('portal_partner_id','!=',False)]}"/>
+                <button name="update_all_portal_partner" string="Setup partner in all data" type="object" icon="fa-refresh" />
             </tree>
         </field>
     </record>
