@@ -29,7 +29,7 @@
           <field name="view_id" ref="view_edi_order_wizard_form"/>
       </record>
       <menuitem 
-            parent="menu_portal_configuration"
+            parent="menu_portal_sale_order"
             id="menu_view_sale_order_wizard_import" 
             action="action_view_edi_order_wizard_form"
             sequence="20"
