@@ -6,6 +6,7 @@ import logging
 import base64
 import shutil
 from odoo import models, fields, api
+from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
 
