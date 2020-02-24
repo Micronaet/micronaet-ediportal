@@ -51,7 +51,9 @@ class EdiOrderWizard(models.TransientModel):
         row += 1
         report_pool.write_xls_line(ws_name, row, header, style_code='header')
 
-        for pricelist in pricelists:
+        for pricelist in sorted(
+                pricelists,
+                key=lambda x: x.product_id.default_code):
             product = pricelist.product_id
             row += 1
             report_pool.write_xls_line(ws_name, row, (
