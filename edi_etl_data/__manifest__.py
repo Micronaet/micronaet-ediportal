@@ -15,6 +15,7 @@
     'depends': [
         'base',
         'sale',
+        'xlsxwriter_report',
         ],
     'data': [
         'security/portal_group.xml',
