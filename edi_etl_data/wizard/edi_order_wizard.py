@@ -14,7 +14,8 @@ _logger = logging.getLogger(__name__)
 class EdiOrderWizard(models.TransientModel):
     """ Model name: EDI Order wizard
     """
-    _inherit = 'edi.order.wizard'
+    _name = 'edi.order.wizard'
+    _description = 'Extract pricelist wizard'
 
     # -------------------------------------------------------------------------
     #                                   COLUMNS:
