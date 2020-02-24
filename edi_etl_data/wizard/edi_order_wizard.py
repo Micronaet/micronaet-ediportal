@@ -11,7 +11,7 @@ from odoo import models, fields, api
 _logger = logging.getLogger(__name__)
 
 
-class EdiOrderWizard(models.Model):
+class EdiOrderWizard(models.TransientModel):
     """ Model name: EDI Order wizard
     """
     _inherit = 'edi.order.wizard'
