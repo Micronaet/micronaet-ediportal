@@ -98,7 +98,7 @@ class EdiOrderWizard(models.TransientModel):
         import pdb; pdb.set_trace()
         for row in range(WS.nrows):
             pricelist_id = WS.cell_value(row, 0)
-            if pricelist_id == 'ID':
+            if not start_import and pricelist_id == 'ID':
                 start_import = True
                 _logger.info('%s. Header line' % row)
                 continue
@@ -106,7 +106,7 @@ class EdiOrderWizard(models.TransientModel):
             if not start_import:
                 _logger.info('%s. Jump line' % row)
                 continue
-
+            pricelist_id = int(pricelist_id)
             lst_price = WS.cell_value(row, 3)
             product_qty = WS.cell_value(row, 4)
 
