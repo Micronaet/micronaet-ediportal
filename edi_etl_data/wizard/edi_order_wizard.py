@@ -88,16 +88,16 @@ class EdiOrderWizard(models.TransientModel):
         # Open Excel file:
         # ---------------------------------------------------------------------
         try:
-            WB = xlrd.open_workbook(filename)
+            wb = xlrd.open_workbook(filename)
         except:
             raise exceptions.Warning(_('Cannot read XLS file'))
 
-        WS = WB.sheet_by_index(0)
+        ws = wb.sheet_by_index(0)
         no_data = True
         start_import = False
         import pdb; pdb.set_trace()
-        for row in range(WS.nrows):
-            pricelist_id = WS.cell_value(row, 0)
+        for row in range(ws.nrows):
+            pricelist_id = ws.cell_value(row, 0)
             if not start_import and pricelist_id == 'ID':
                 start_import = True
                 _logger.info('%s. Header line' % row)
@@ -107,8 +107,8 @@ class EdiOrderWizard(models.TransientModel):
                 _logger.info('%s. Jump line' % row)
                 continue
             pricelist_id = int(pricelist_id)
-            lst_price = WS.cell_value(row, 3)
-            product_qty = WS.cell_value(row, 4)
+            lst_price = ws.cell_value(row, 3)
+            product_qty = ws.cell_value(row, 4)
 
             if product_qty <= 0:
                 _logger.info('%s. No quantity' % row)
