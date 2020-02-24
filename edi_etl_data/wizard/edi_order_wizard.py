@@ -4,7 +4,6 @@
 import xlrd
 import logging
 import base64
-import shutil
 from odoo import models, fields, api, exceptions
 from odoo.tools.translate import _
 
@@ -57,7 +56,7 @@ class EdiOrderWizard(models.TransientModel):
             product = pricelist.product_id
             row += 1
             report_pool.write_xls_line(ws_name, row, (
-                pricelist.id,  # TODO change management with product
+                pricelist.id,
                 product.default_code,
                 product.name,
                 (pricelist.lst_price, 'number'),
@@ -73,7 +72,6 @@ class EdiOrderWizard(models.TransientModel):
         order_pool = self.env['sale.order']
         line_pool = self.env['sale.order.line']
         pricelist_pool = self.env['res.partner.pricelist']
-        model_pool = self.env['ir.model.data']
 
         # ---------------------------------------------------------------------
         # Save passed file:
@@ -132,7 +130,7 @@ class EdiOrderWizard(models.TransientModel):
                     }).id
 
             # Create sale order line:
-            pricelist = pricelist_pool.browse(pricelist_id)  # TODO use product
+            pricelist = pricelist_pool.browse(pricelist_id)
             product = pricelist.product_id
             line_pool.create({
                 'order_id': order_id,
