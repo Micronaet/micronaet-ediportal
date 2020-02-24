@@ -96,14 +96,28 @@ class EdiOrderWizard(models.TransientModel):
 
         WS = WB.sheet_by_index(0)
         no_data = True
+        start_import = False
         import pdb; pdb.set_trace()
         for row in range(start_row, WS.nrows):
             pricelist_id = WS.cell_value(row, 0)
+            if pricelist_id == 'ID':
+                start_import = True
+                _logger.info('%s. Header line' % row)
+                continue
+
+            if not start_import:
+                _logger.info('%s. Jump line' % row)
+                continue
+
             lst_price = WS.cell_value(row, 3)
             product_qty = WS.cell_value(row, 4)
 
             if product_qty <= 0:
+                _logger.info('%s. No quantity' % row)
                 continue  # Jump empty line
+            else:
+                _logger.info('%s. Import line' % row)
+
             if no_data:
                 no_data = False
 
