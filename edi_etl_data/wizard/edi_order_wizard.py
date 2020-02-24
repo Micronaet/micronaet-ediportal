@@ -5,7 +5,7 @@ import xlrd
 import logging
 import base64
 import shutil
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 from odoo.tools.translate import _
 
 _logger = logging.getLogger(__name__)
@@ -57,7 +57,7 @@ class EdiOrderWizard(models.TransientModel):
             product = pricelist.product_id
             row += 1
             report_pool.write_xls_line(ws_name, row, (
-                pricelist.id,
+                pricelist.id,  # TODO change management with product
                 product.default_code,
                 product.name,
                 (pricelist.lst_price, 'number'),
@@ -70,7 +70,62 @@ class EdiOrderWizard(models.TransientModel):
     def import_pricelist(self):
         """ Export Xlsx file for select product
         """
+        start_row = 1
 
+        order_pool = self.env['sale.order']
+        line_pool = self.env['sale.order.line']
+        pricelist_pool = self.env['res.partner.pricelist']
+
+        # ---------------------------------------------------------------------
+        # Save passed file:
+        # ---------------------------------------------------------------------
+        b64_file = base64.decodebytes(self.file)
+        now = ('%s' % fields.Datetime.now())[:19]
+        filename = '/tmp/tx_%s.xlsx' % now.replace(':', '_').replace('-', '_')
+        f = open(filename, 'wb')
+        f.write(b64_file)
+        f.close()
+
+        # ---------------------------------------------------------------------
+        # Open Excel file:
+        # ---------------------------------------------------------------------
+        try:
+            WB = xlrd.open_workbook(filename)
+        except:
+            raise exceptions.Warning(_('Cannot read XLS file')),
+
+        WS = WB.sheet_by_index(0)
+        no_data = True
+        import pdb; pdb.set_trace()
+        for row in range(start_row, WS.nrows):
+            pricelist_id = WS.cell_value(row, 0)
+            lst_price = WS.cell_value(row, 3)
+            product_qty = WS.cell_value(row, 4)
+
+            if product_qty <= 0:
+                continue  # Jump empty line
+            if no_data:
+                no_data = False
+
+                # -------------------------------------------------------------
+                # Create sale order:
+                # -------------------------------------------------------------
+                order_id = order_pool.create({
+                    'partner_id': self.portal_partner_id.id,
+                    'user_id': self.user_id.id,
+                    'date_order': now,
+                    }).id
+
+            # Create sale order line:
+            pricelist = pricelist_pool.browse(pricelist_id)  # TODO use product
+            product = pricelist.product_id
+            line_pool.create({
+                'order_id': order_id,
+                'product_id': product.id,
+                'name': product.name,
+                'product_uom_qty': product_qty,
+                'price_unit': lst_price,
+                })
     # -------------------------------------------------------------------------
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
