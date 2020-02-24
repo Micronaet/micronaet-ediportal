@@ -66,9 +66,11 @@
         <field name="name">res.users.partner.tree</field>
         <field name="model">res.users</field>
         <field name="arch" type="xml">
-            <tree string="String" editable="bottom" colors="red:portal_partner_id==False">
+            <tree string="String" editable="bottom" decoration-danger="portal_partner_id==False">
                 <field name="name" />
                 <field name="portal_partner_id" />
+                <button name="remove_all_portal_partner" string="Remove partner in all data" type="object" icon="fa-rotate-left"/>
+                <button name="update_all_portal_partner" string="Setup partner in all data" type="object" icon="fa-refresh"/>
             </tree>
         </field>
     </record>

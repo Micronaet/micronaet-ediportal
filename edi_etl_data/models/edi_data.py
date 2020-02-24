@@ -33,6 +33,48 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     # -------------------------------------------------------------------------
+    # Button:
+    # -------------------------------------------------------------------------
+    @api.multi
+    def update_all_portal_partner(self):
+        """ Update order and pricelist
+        """
+        self.update_all_data(self, self.id)
+
+    @api.multi
+    def remove_all_portal_partner(self):
+        """ Remove reference from order and pricelist
+        """
+        self.update_all_data(self, False)
+        self.portal_partner_id = False
+
+    # -------------------------------------------------------------------------
+    # Utility:
+    # -------------------------------------------------------------------------
+    @api.model
+    def update_all_data(self, user_id):
+        # ---------------------------------------------------------------------
+        # Remove portal partner from sale order:
+        # ---------------------------------------------------------------------
+        order_pool = self.env['sale.order']
+        orders = order_pool.search([
+            ('partner_id', '=', self.portal_partner_id.id)])
+        orders.write({
+            'user_id': user_id,
+            })
+
+        # ---------------------------------------------------------------------
+        # Remove portal partner from pricelist:
+        # ---------------------------------------------------------------------
+        pricelist = self.env['res.partner.pricelist']
+        pricelists = pricelist.search([
+            ('partner_id', '=', self.portal_partner_id.id)])
+        pricelists.write({
+            'user_id': user_id,
+            })
+        return True
+
+    # -------------------------------------------------------------------------
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
     portal_partner_id = fields.Many2one('res.partner', 'Portal Customer')

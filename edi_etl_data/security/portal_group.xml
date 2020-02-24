@@ -2,10 +2,10 @@
 <openerp>
    <data>
         <record id="group_portal_manager" model="res.groups">
-            <field name="name">Portal Administrator</field>
+            <field name="name">EDI Portal Administrator</field>
         </record>
         <record id="group_portal_user" model="res.groups">
-            <field name="name">Portal user</field>
+            <field name="name">EDI Portal user</field>
         </record>
    </data>
 </openerp>
