@@ -58,7 +58,7 @@ class EdiOrderWizard(models.TransientModel):
                 pricelist.id,
                 product.default_code,
                 product.name,
-                pricelist.lst_price,
+                (pricelist.lst_price, 'number'),
                 '',
             ), style_code='text')
 
