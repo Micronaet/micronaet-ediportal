@@ -26,8 +26,17 @@
             </form>
         </field>
     </record>
+    <record model="ir.actions.act_window" id="action_view_res_partner_pricelist_my">
+        <field name="name">My customer pricelist</field>
+        <field name="res_model">res.partner.pricelist</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_res_partner_pricelist_tree"/>
+        <field name="context">{}</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+    </record>
     <record model="ir.actions.act_window" id="action_view_res_partner_pricelist">
-        <field name="name">Customer Pricelist</field>
+        <field name="name">Customer Pricelist (all)</field>
         <field name="res_model">res.partner.pricelist</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
@@ -36,13 +45,21 @@
         <field name="domain">[]</field>
     </record>
 
-    <record model="ir.actions.act_window" id="action_view_sale_order">
-        <field name="name">Sale order</field>
+    <record model="ir.actions.act_window" id="action_view_sale_order_my">
+        <field name="name">My sale order</field>
         <field name="res_model">sale.order</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{'default_user_id': uid}</field>
         <field name="domain">[('user_id', '=', uid)]</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_view_sale_order">
+        <field name="name">Sale order</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">[]</field>
     </record>
 
     <!--<record id="ir_get_my_order_server_action" model="ir.actions.server">
@@ -107,7 +124,7 @@
             <menuitem 
                 parent="menu_portal_sale_order"
                 id="menu_view_sale_order_my" 
-                action="action_view_sale_order"
+                action="action_view_sale_order_my"
                 sequence="10"
                 />
 
@@ -120,7 +137,7 @@
             <menuitem 
                 parent="menu_portal_extra"
                 id="menu_view_res_partner_pricelist_tree" 
-                action="action_view_res_partner_pricelist"/>
+                action="action_view_res_partner_pricelist_my"/>
             
         <menuitem 
             parent="menu_portal_order_root"
@@ -140,6 +157,20 @@
                 id="menu_view_res_user_new" 
                 action="action_res_users_tree"
                 sequence="20"
+                />
+
+            <menuitem 
+                parent="menu_portal_configuration"
+                id="menu_view_sale_order_all" 
+                action="action_view_sale_order"
+                sequence="30"
+                />
+
+            <menuitem 
+                parent="menu_portal_configuration"
+                id="menu_view_res_partner_pricelist_all" 
+                action="action_view_res_partner_pricelist"
+                sequence="40"
                 />
     
 </odoo>
