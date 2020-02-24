@@ -59,7 +59,7 @@ class EdiOrderWizard(models.TransientModel):
                 product.default_code,
                 product.name,
                 (pricelist.lst_price, 'number'),
-                '',
+                ('', 'number'),
             ), style_code='text')
 
         return report_pool.return_attachment('Pricelist_Purchase_Order')
