@@ -1,5 +1,19 @@
 <?xml version="1.0"?>
 <odoo>
+    <record model="ir.ui.view" id="view_sale_order_form">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="domain">[('parent_id', '=', partner_id)]</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="domain">[('parent_id', '=', partner_id)]</attribute>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_res_partner_pricelist_tree">
         <field name="name">res.partner.pricelist.tree</field>
         <field name="model">res.partner.pricelist</field>
