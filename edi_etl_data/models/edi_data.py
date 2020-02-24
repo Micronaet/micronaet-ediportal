@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import io
-import xlsxwriter
 import logging
 import base64
 import shutil
