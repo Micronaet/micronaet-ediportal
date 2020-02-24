@@ -66,7 +66,6 @@ class EdiOrderWizard(models.TransientModel):
 
         return report_pool.return_attachment('Pricelist_Purchase_Order')
 
-
     @api.multi
     def import_pricelist(self):
         """ Export Xlsx file for select product
@@ -79,3 +78,4 @@ class EdiOrderWizard(models.TransientModel):
         'res.users', 'User', required=True, default=lambda self: self.env.user)
     portal_partner_id = fields.Many2one(
         'res.partner', 'Portal Customer', related='user_id.portal_partner_id')
+    file = fields.Binary('XLSX file', filters=None)

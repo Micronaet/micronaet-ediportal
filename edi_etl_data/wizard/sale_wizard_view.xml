@@ -15,7 +15,7 @@
                    <group colspan="4" col="4">
                         <field name="user_id" readonly="1"/>
                         <field name="portal_partner_id" readonly="1"/>
-                        
+                        <field name="file" />
                    </group>
                 </form>
             </field>
