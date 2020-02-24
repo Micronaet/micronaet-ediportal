@@ -9,7 +9,7 @@
                 <form string="Wizard" version="7.0">
                    <header>
                        <button string="Cancel" special="cancel" />
-                       <button name="export_pricelist" string="Export pricelist" type="object" class="oe_highlight" />
+                       <button name="export_pricelist" string="Export pricelist" type="object" class="oe_highlight" attrs="{'invisible': [('file','!=',False)]}"/>
                        <button name="import_pricelist" string="Import sale order" type="object" class="oe_highlight" attrs="{'invisible': [('file','=',False)]}"/>
                    </header>                   
                    <group colspan="4" col="4">
