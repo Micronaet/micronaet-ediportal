@@ -111,12 +111,12 @@
 
         <menuitem 
             parent="menu_portal_order_root"
-            id="menu_portal_configuration" 
+            id="menu_portal_extra" 
             name="Extra"
             sequence="20"            
             />
             <menuitem 
-                parent="menu_portal_configuration"
+                parent="menu_portal_extra"
                 id="menu_view_res_partner_pricelist_tree" 
                 action="action_view_res_partner_pricelist"/>
             
