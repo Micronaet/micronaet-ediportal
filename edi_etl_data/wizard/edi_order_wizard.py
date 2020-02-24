@@ -70,8 +70,6 @@ class EdiOrderWizard(models.TransientModel):
     def import_pricelist(self):
         """ Export Xlsx file for select product
         """
-        start_row = 1
-
         order_pool = self.env['sale.order']
         line_pool = self.env['sale.order.line']
         pricelist_pool = self.env['res.partner.pricelist']
@@ -98,7 +96,7 @@ class EdiOrderWizard(models.TransientModel):
         no_data = True
         start_import = False
         import pdb; pdb.set_trace()
-        for row in range(start_row, WS.nrows):
+        for row in range(WS.nrows):
             pricelist_id = WS.cell_value(row, 0)
             if pricelist_id == 'ID':
                 start_import = True
