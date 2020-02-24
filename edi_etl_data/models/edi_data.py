@@ -1,10 +1,7 @@
 # Copyright 2019  Micronaet SRL (<http://www.micronaet.it>).
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import io
 import logging
-import base64
-import shutil
 from odoo import models, fields, api
 
 _logger = logging.getLogger(__name__)
@@ -52,13 +49,17 @@ class ResUsers(models.Model):
     # -------------------------------------------------------------------------
     @api.model
     def update_all_data(self, user_id):
+        """ Utility for reset or setup the user in pricelist and sale order
+        """
         operation = 'update' if user_id else 'remove'
+        partner_id = self.portal_partner_id.id
+
         # ---------------------------------------------------------------------
         # Remove portal partner from sale order:
         # ---------------------------------------------------------------------
         order_pool = self.env['sale.order']
         orders = order_pool.search([
-            ('partner_id', '=', self.portal_partner_id.id)])
+            ('partner_id', '=', partner_id)])
         orders.write({
             'user_id': user_id,
             })
@@ -69,10 +70,11 @@ class ResUsers(models.Model):
         # ---------------------------------------------------------------------
         pricelist = self.env['res.partner.pricelist']
         pricelists = pricelist.search([
-            ('partner_id', '=', self.portal_partner_id.id)])
+            ('partner_id', '=', partner_id)])
         pricelists.write({
             'user_id': user_id,
             })
+
         _logger.info('%s %s pricelists items' % (operation, len(pricelists)))
 
     # -------------------------------------------------------------------------
