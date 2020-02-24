@@ -154,7 +154,7 @@
                 />
             <menuitem 
                 parent="menu_portal_configuration"
-                id="menu_view_res_user_new" 
+                id="menu_view_res_user_tree" 
                 action="action_res_users_tree"
                 sequence="20"
                 />
