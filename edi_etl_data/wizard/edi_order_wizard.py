@@ -96,6 +96,8 @@ class EdiOrderWizard(models.TransientModel):
         no_data = True
         start_import = False
         for row in range(ws.nrows):
+            import pdb; pdb.set_trace()
+
             try:
                 pricelist_id = ws.cell_value(row, 0)
             except:
