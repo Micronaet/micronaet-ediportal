@@ -17,6 +17,7 @@
         'sale',
         ],
     'data': [
+        'security/portal_group.xml',
         'security/ir.model.access.csv',
         'views/edi_view.xml',
         'wizard/sale_wizard_view.xml',
