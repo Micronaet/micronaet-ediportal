@@ -57,7 +57,7 @@
             sequence="10"            
             />
             <menuitem 
-                parent="menu_portal_configuration"
+                parent="menu_portal_sale_order"
                 id="menu_view_sale_order_my" 
                 action="action_view_sale_order"
                 sequence="10"
