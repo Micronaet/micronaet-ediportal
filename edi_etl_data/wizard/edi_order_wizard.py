@@ -73,6 +73,7 @@ class EdiOrderWizard(models.TransientModel):
         order_pool = self.env['sale.order']
         line_pool = self.env['sale.order.line']
         pricelist_pool = self.env['res.partner.pricelist']
+        model_pool = self.env['ir.model.data']
 
         # ---------------------------------------------------------------------
         # Save passed file:
@@ -95,6 +96,8 @@ class EdiOrderWizard(models.TransientModel):
         ws = wb.sheet_by_index(0)
         no_data = True
         start_import = False
+        order_id = False
+
         for row in range(ws.nrows):
             pricelist_id = ws.cell_value(row, 0)
 
@@ -122,7 +125,6 @@ class EdiOrderWizard(models.TransientModel):
                 # -------------------------------------------------------------
                 # Create sale order:
                 # -------------------------------------------------------------
-                import pdb; pdb.set_trace()
                 order_id = order_pool.create({
                     'partner_id': self.portal_partner_id.id,
                     'user_id': self.user_id.id,
@@ -139,6 +141,24 @@ class EdiOrderWizard(models.TransientModel):
                 'product_uom_qty': product_qty,
                 'price_unit': lst_price,
                 })
+        if order_id:
+            return {
+                'type': 'ir.actions.act_window',
+                'name': _('Sale order'),
+                'view_type': 'form',
+                'view_mode': 'tree,form',
+                'res_id': order_id,
+                'res_model': 'sale.order',
+                'view_id': False,
+                'views': [(False, 'form'), (False, 'tree')],
+                'domain': [],
+                'context': self.env.context,
+                'target': 'current',
+                'nodestroy': False,
+                }
+        else:
+            raise exceptions.Warning('No selection on file!')
+
     # -------------------------------------------------------------------------
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
