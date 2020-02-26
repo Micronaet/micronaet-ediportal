@@ -129,3 +129,5 @@ class SaleOrder(models.Model):
     # -------------------------------------------------------------------------
     user_id = fields.Many2one('res.users', 'Customer user')
     my_line_ids = fields.One2many('sale.order.line.my', 'order_id', 'My line')
+    portal_partner_id = fields.Many2one(
+        'res.partner', 'Portal partner', related='user_id.portal_partner_id')

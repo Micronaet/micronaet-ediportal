@@ -58,6 +58,7 @@
                     </tree>
                 </field>
             </field>
+            <field name="portal_partner_id" invisible="1"/>
         </field>
     </record>
 
