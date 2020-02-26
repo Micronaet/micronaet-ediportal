@@ -1,5 +1,20 @@
 <?xml version="1.0"?>
 <odoo>
+    
+    <record model="ir.ui.view" id="view_sale_order_hide_tree">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="attribute">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="amount_total" position="attribute">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
     <record model="ir.ui.view" id="view_sale_order_form">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
