@@ -77,7 +77,7 @@
             </field>
             <label for="amount_total"  position="attributes">
                 <attribute name="invisible">1</attribute>
-            </field>
+            </label>
             <field name="order_line" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
