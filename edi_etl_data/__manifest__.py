@@ -22,7 +22,7 @@
         'security/portal_group.xml',
         'security/ir.model.access.csv',
         
-        'views/menu_group.xml',
+        'views/change_menu_group.xml',
         
         'views/edi_view.xml',
         'wizard/sale_wizard_view.xml',
