@@ -133,6 +133,7 @@ class EdiOrderWizard(models.TransientModel):
             pricelist = pricelist_pool.browse(pricelist_id)
             product = pricelist.product_id
             line_pool.create({
+                'user_id': self.user_id.id,
                 'order_id': order_id,
                 'product_id': pricelist_id,
                 'name': product.name,
