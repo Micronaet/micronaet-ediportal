@@ -16,6 +16,7 @@
         'base',
         'sale',
         'xlsxwriter_report',
+        'mail',
         ],
     'data': [
         'security/menu_groups.xml',
