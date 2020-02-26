@@ -99,6 +99,25 @@ class ResPartnerPricelist(models.Model):
     product_id = fields.Many2one('product.product', 'Product')
     lst_price = fields.Float('List price', digits=(16, 3))
 
+class SaleOrderLineMy(models.Model):
+    """ Model name: Sale order line
+    """
+    _name = 'sale.order.line.my'
+    _description = 'My sale order'
+    _rec_name = 'product_id'
+    
+    # -------------------------------------------------------------------------
+    #                                   COLUMNS:
+    # -------------------------------------------------------------------------
+    product_id = fields.Many2one(
+        'res.partner.pricelist', 'Product', 
+        domain="[('user_id', '=', user_id')]",
+        )
+    user_id = fields.Many2one(
+        'res.users', 'Customer user', default=lambda s: s.uid)
+
+    order_id = fields.Many2one('sale.order', 'Order')
+    product_uom_qty = fields.Float('Product qty', digits=(16, 3))
 
 class SaleOrder(models.Model):
     """ Model name: Sale order
@@ -109,3 +128,4 @@ class SaleOrder(models.Model):
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
     user_id = fields.Many2one('res.users', 'Customer user')
+    my_line_ids = fields.One2many('sale.order.line.my', 'order_id', 'My line')
