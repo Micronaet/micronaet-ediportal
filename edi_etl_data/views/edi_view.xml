@@ -11,6 +11,12 @@
             <filter name="customer" position="after">
                  <filter name="destination" string="Destination" domain="[]" context="{'group_by':'partner_shipping_id'}"/>            
             </filter>
+            <field name="partner_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="user_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>            
         </field>
     </record>
 
