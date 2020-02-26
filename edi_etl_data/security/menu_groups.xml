@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
    <data>
-        <record id="group_show_menu_category" model="res.groups.category">
+        <!--<record id="group_show_menu_category" model="res.groups.category">
             <field name="name">Menu management</field>
-        </record>
+        </record>-->
         
         <record id="group_show_menu_sales" model="res.groups">
             <field name="name">Menu Sales</field>
-            <field name="category_id" eval="ref('group_show_menu_category')"/>
+            <!--<field name="category_id" eval="ref('group_show_menu_category')"/>-->
         </record>
         <record id="group_show_menu_invoice" model="res.groups">
             <field name="name">Menu Invoice</field>
-            <field name="category_id" eval="ref('group_show_menu_category')"/>
+            <!--<field name="category_id" eval="ref('group_show_menu_category')"/>-->
         </record>
         <record id="group_show_menu_dashboard" model="res.groups">
             <field name="name">Menu Dashboard</field>
-            <field name="category_id" eval="ref('group_show_menu_category')"/>
+            <!--<field name="category_id" eval="ref('group_show_menu_category')"/>-->
         </record>
    </data>
 </openerp>
