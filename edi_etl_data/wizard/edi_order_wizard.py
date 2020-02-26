@@ -70,8 +70,8 @@ class EdiOrderWizard(models.TransientModel):
         """ Export Xlsx file for select product
         """
         order_pool = self.env['sale.order']
-        line_pool = self.env['sale.order.line']
         pricelist_pool = self.env['res.partner.pricelist']
+        line_pool = self.env['sale.order.line.my']
 
         # ---------------------------------------------------------------------
         # Save passed file:
@@ -134,10 +134,10 @@ class EdiOrderWizard(models.TransientModel):
             product = pricelist.product_id
             line_pool.create({
                 'order_id': order_id,
-                'product_id': product.id,
+                'product_id': pricelist_id,
                 'name': product.name,
                 'product_uom_qty': product_qty,
-                'price_unit': lst_price,
+                #'price_unit': lst_price,
                 })
         if order_id:
             return {
