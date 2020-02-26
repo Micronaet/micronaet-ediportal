@@ -24,7 +24,7 @@
                 <field name="user_id" can_create="0" can_write="0" /><!-- invisible="1"-->
             </field>
             <field name="partner_id" position="attributes">
-                <attribute name="domain">[('parent_id', '=', portal_partner_id)]</attribute>
+                <!--<attribute name="domain">[('parent_id', '=', portal_partner_id)]</attribute>-->
                 <attribute name="can_create">0</attribute>                
                 <attribute name="can_write">0</attribute>                
             </field>
@@ -58,7 +58,7 @@
                     </tree>
                 </field>
             </field>
-            <field name="portal_partner_id" invisible="1"/>
+            <!--<field name="portal_partner_id" invisible="1"/>-->
         </field>
     </record>
 
