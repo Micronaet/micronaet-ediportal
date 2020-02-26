@@ -5,6 +5,10 @@
         <record model="ir.ui.menu" id="mail.mail_channel_menu_root_chat">
             <field name="groups_id" eval="[(6, 0, [ref('group_show_menu_dashboard'), ])]" />
         </record>
+        <record model="ir.ui.menu" id="sale.sale_menu_root">
+            <field name="groups_id" eval="[(6, 0, [ref('group_show_menu_sales'), ])]" />
+        </record>
+        
     </data>
 </openerp>
 
