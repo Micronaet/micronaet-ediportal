@@ -111,7 +111,7 @@ class SaleOrderLineMy(models.Model):
     # -------------------------------------------------------------------------
     product_id = fields.Many2one(
         'res.partner.pricelist', 'Product', 
-        domain="[('user_id', '=', user_id')]",
+        domain="[('user_id', '=', user_id)]",
         )
     user_id = fields.Many2one(
         'res.users', 'Customer user', default=lambda s: s.uid)
