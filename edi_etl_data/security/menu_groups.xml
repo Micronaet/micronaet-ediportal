@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
    <data>
-        <record id="group_show_menu_category" model="res.groups">
+        <record id="group_show_menu_category" model="res.groups.category">
             <field name="name">Menu management</field>
         </record>
         
