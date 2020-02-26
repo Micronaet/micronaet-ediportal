@@ -21,6 +21,9 @@
         'security/menu_groups.xml',
         'security/portal_group.xml',
         'security/ir.model.access.csv',
+        
+        'views/menu_group.xml',
+        
         'views/edi_view.xml',
         'wizard/sale_wizard_view.xml',
         # 'data/color_data.xml',
