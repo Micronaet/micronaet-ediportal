@@ -1,0 +1,353 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* edi_etl_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-26 15:47+0000\n"
+"PO-Revision-Date: 2020-02-26 16:54+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: it\n"
+"X-Generator: Poedit 1.6.10\n"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:34
+#, python-format
+msgid "%s Pricelist article for purchase order"
+msgstr "%s Articoli a listino per ordini di acquisto"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_edi_order_wizard_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:92
+#, python-format
+msgid "Cannot read XLS file"
+msgstr "Impossibile leggere il file XLSX"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:37
+#, python-format
+msgid "Code"
+msgstr "Codice"
+
+#. module: edi_etl_data
+#: model:ir.ui.menu,name:edi_etl_data.menu_portal_configuration
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. module: edi_etl_data
+#: model:ir.model,name:edi_etl_data.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_create_uid
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_create_uid
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_create_date
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_create_date
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_view_res_partner_pricelist
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_res_partner_pricelist_all
+msgid "Customer Pricelist (all)"
+msgstr "Listino cliente (tutti)"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_customer_code
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_users_customer_code
+msgid "Customer code"
+msgstr "Codice cliente"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_user_id
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_user_id
+msgid "Customer user"
+msgstr "Utente cliente"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_sale_order_hide_filter
+msgid "Destination"
+msgstr "Destinazione"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_destination_code
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_users_destination_code
+msgid "Destination code"
+msgstr "Codice destinazione"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_display_name
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_display_name
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: edi_etl_data
+#: model:res.groups,name:edi_etl_data.group_portal_manager
+msgid "EDI Portal Administrator"
+msgstr "EDI Portal Administrator"
+
+#. module: edi_etl_data
+#: model:res.groups,name:edi_etl_data.group_portal_user
+msgid "EDI Portal user"
+msgstr "EDI Portal user"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_etl_import
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_users_etl_import
+msgid "ETL Import"
+msgstr "Importazione ETL"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_edi_order_wizard_form
+msgid "Export pricelist"
+msgstr "Esporta listino"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_view_edi_order_wizard_form
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_sale_order_wizard_import
+msgid "Export-Import order"
+msgstr "Esporta / importa ordine"
+
+#. module: edi_etl_data
+#: model:ir.ui.menu,name:edi_etl_data.menu_portal_extra
+msgid "Extra"
+msgstr "Extra"
+
+#. module: edi_etl_data
+#: model:ir.model,name:edi_etl_data.model_edi_order_wizard
+msgid "Extract pricelist wizard"
+msgstr "Estrai listino"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_id
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_id
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_id
+msgid "ID"
+msgstr "ID"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_edi_order_wizard_form
+msgid "Import sale order"
+msgstr "Importa ordine"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard___last_update
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist___last_update
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my___last_update
+msgid "Last Modified on"
+msgstr "Data di ultima modifica"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_write_uid
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_write_uid
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_write_uid
+msgid "Last Updated by"
+msgstr "Ultima modifica di"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_write_date
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_write_date
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_write_date
+msgid "Last Updated on"
+msgstr "Ultima modifica il"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_lst_price
+msgid "List price"
+msgstr "Prezzo listino"
+
+#. module: edi_etl_data
+#: model:res.groups,name:edi_etl_data.group_show_menu_dashboard
+msgid "Menu Dashboard"
+msgstr "Menu Dashboard"
+
+#. module: edi_etl_data
+#: model:res.groups,name:edi_etl_data.group_show_menu_invoice
+msgid "Menu Invoice"
+msgstr "Menu Fatturazione"
+
+#. module: edi_etl_data
+#: model:res.groups,name:edi_etl_data.group_show_menu_sales
+msgid "Menu Sales"
+msgstr "Menu Vendita"
+
+#. module: edi_etl_data
+#: model:ir.module.category,name:edi_etl_data.group_show_menu_category
+msgid "Menu management"
+msgstr "Gestione menu"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_view_res_partner_pricelist_my
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_res_partner_pricelist_tree
+msgid "My customer pricelist"
+msgstr "Mie particolarità"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_my_line_ids
+msgid "My line"
+msgstr "Righe"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_sale_order_form
+msgid "My lines"
+msgstr "Righe"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_view_sale_order_my
+#: model:ir.model,name:edi_etl_data.model_sale_order_line_my
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_sale_order_my
+msgid "My sale order"
+msgstr "Miei ordini"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:37
+#, python-format
+msgid "Name"
+msgstr "Nome"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_res_users_form
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_res_user_new
+msgid "New User"
+msgstr "Nuovo utente"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: edi_etl_data
+#: model:ir.model,name:edi_etl_data.model_res_partner_pricelist
+msgid "Partner pricelist"
+msgstr "Listino partner"
+
+#. module: edi_etl_data
+#: model:ir.ui.menu,name:edi_etl_data.menu_portal_order_root
+msgid "Portal"
+msgstr "Portale"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_portal_partner_id
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_users_portal_partner_id
+msgid "Portal Customer"
+msgstr "Cliente portale"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:37
+#, python-format
+msgid "Price"
+msgstr "Prezzo"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_res_partner_pricelist_form
+#: model:ir.ui.view,arch_db:edi_etl_data.view_res_partner_pricelist_tree
+msgid "Pricelist"
+msgstr "Listino prezzi"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:40
+#, python-format
+msgid "Pricelist order"
+msgstr "Ordine da listino"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_pricelist_product_id
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_sale_order_line_my_product_uom_qty
+msgid "Product qty"
+msgstr "Q."
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:37
+#, python-format
+msgid "Purchase"
+msgstr "Acquisto"
+
+#. module: edi_etl_data
+#: model:ir.model,name:edi_etl_data.model_sale_order
+msgid "Quotation"
+msgstr "Preventivo"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_res_user_partner_tree
+msgid "Remove partner in all data"
+msgstr "Rimuovi il partner da tutti i dati"
+
+#. module: edi_etl_data
+#: code:addons/edi_etl_data/wizard/edi_order_wizard.py:146
+#: model:ir.actions.act_window,name:edi_etl_data.action_view_sale_order
+#: model:ir.ui.menu,name:edi_etl_data.menu_portal_sale_order
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_sale_order_all
+#, python-format
+msgid "Sale order"
+msgstr "Ordini di vendita"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_res_user_partner_tree
+msgid "Setup partner in all data"
+msgstr "Imposta il partner su tutti i dati (ordini e listini)"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_res_user_partner_tree
+msgid "String"
+msgstr "Stringa"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_partner_supplier_code
+#: model:ir.model.fields,field_description:edi_etl_data.field_res_users_supplier_code
+msgid "Supplier code"
+msgstr "Codice fornitore"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_user_id
+msgid "User"
+msgstr "Utente"
+
+#. module: edi_etl_data
+#: model:ir.actions.act_window,name:edi_etl_data.action_res_users_tree
+#: model:ir.ui.menu,name:edi_etl_data.menu_view_res_user_tree
+msgid "User parter link"
+msgstr "Partner utente"
+
+#. module: edi_etl_data
+#: model:ir.model,name:edi_etl_data.model_res_users
+msgid "Users"
+msgstr "Utenti"
+
+#. module: edi_etl_data
+#: model:ir.ui.view,arch_db:edi_etl_data.view_edi_order_wizard_form
+msgid "Wizard"
+msgstr "Wizard"
+
+#. module: edi_etl_data
+#: model:ir.model.fields,field_description:edi_etl_data.field_edi_order_wizard_file
+msgid "XLSX file"
+msgstr "File XLSX"
