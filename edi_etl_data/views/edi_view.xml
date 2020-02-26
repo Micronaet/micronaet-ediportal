@@ -8,7 +8,9 @@
              <filter name="customer" position="attributes">
                 <attribute name="invisible">1</attribute>
             </filter>
-             <filter name="destination" string="Destination" domain="[]" context="{'group_by':'partner_shipping_id'}"/>            
+            <filter name="customer" position="after">
+                 <filter name="destination" string="Destination" domain="[]" context="{'group_by':'partner_shipping_id'}"/>            
+            </filter>
         </field>
     </record>
 
