@@ -7,5 +7,6 @@
         <record id="group_portal_user" model="res.groups">
             <field name="name">EDI Portal user</field>
         </record>
+        
    </data>
 </openerp>

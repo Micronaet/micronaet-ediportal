@@ -18,6 +18,7 @@
         'xlsxwriter_report',
         ],
     'data': [
+        'security/menu_groups.xml',
         'security/portal_group.xml',
         'security/ir.model.access.csv',
         'views/edi_view.xml',
