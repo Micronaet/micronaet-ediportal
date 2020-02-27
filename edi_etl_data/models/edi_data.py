@@ -138,7 +138,7 @@ class ResPartnerPricelist(models.Model):
                 })
         
         # Reset selection:
-        pricelist.write({
+        pricelists.write({
             'product_uom_qty': 0,
             })    
 
