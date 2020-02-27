@@ -103,7 +103,7 @@ class ResPartnerPricelist(models.Model):
 
         now = ('%s' % fields.Datetime.now())[:19]
         
-        user_id = self.uid
+        user_id = self.env.uid
         user = user_pool.browse(user_id)
         pricelists = self.search([
             ('user_id', '=', user_id),
