@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 
 _logger = logging.getLogger(__name__)
 
@@ -91,6 +91,73 @@ class ResPartnerPricelist(models.Model):
     _rec_name = 'product_id'
 
     # -------------------------------------------------------------------------
+    #                                   BUTTON:
+    # -------------------------------------------------------------------------
+    @api.multi
+    def generate_purchase_order(self):
+        """ Generate all purchase order from quantity selected
+        """
+        order_pool = self.env['sale.order']
+        line_pool = self.env['sale.order.line.my']
+        user_pool = self.env['res.users']
+
+        now = ('%s' % fields.Datetime.now())[:19]
+        
+        user_id = self.uid
+        user = user_pool.browse(user_id)
+        pricelists = self.search([
+            ('user_id', '=', user_id),
+            ('product_uom_qty', '>', 0),
+            ])
+
+        if not pricelists: 
+            raise exceptions.Warning('No quantity setup! Insert almost one')
+        
+        # -------------------------------------------------------------
+        # Create sale order:
+        # -------------------------------------------------------------
+        order_id = order_pool.create({
+            'partner_id': user.portal_partner_id.id,
+            'user_id': user_id,
+            'date_order': now,
+            }).id
+
+        for item in pricelists:
+            pricelist_id = item.id
+            #lst_price = item.lst_price
+            product_uom_qty = item.product_uom_qty
+
+            product = item.product_id
+            line_pool.create({
+                'user_id': user_id,
+                'order_id': order_id,
+                'product_id': pricelist_id,
+                'name': product.name,
+                'product_uom_qty': item.product_uom_qty,
+                #'price_unit': lst_price,
+                })
+        
+        # Reset selection:
+        pricelist.write({
+            'product_uom_qty': 0,
+            })    
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Sale order'),
+            'view_type': 'form',
+            'view_mode': 'tree,form',
+            'res_id': order_id,
+            'res_model': 'sale.order',
+            'view_id': False,
+            'views': [(False, 'form'), (False, 'tree')],
+            'domain': [],
+            'context': self.env.context,
+            'target': 'current',
+            'nodestroy': False,
+            }
+            
+    # -------------------------------------------------------------------------
     #                                   COLUMNS:
     # -------------------------------------------------------------------------
     user_id = fields.Many2one('res.users', 'Customer user')
@@ -98,6 +165,7 @@ class ResPartnerPricelist(models.Model):
     partner_id = fields.Many2one('res.partner', 'Customer')
     product_id = fields.Many2one('product.product', 'Product')
     lst_price = fields.Float('List price', digits=(16, 3))
+    product_uom_qty = fields.Float('Order qty', digits=(16, 3))
 
 class SaleOrderLineMy(models.Model):
     """ Model name: Sale order line

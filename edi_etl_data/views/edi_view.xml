@@ -106,10 +106,12 @@
         <field name="name">res.partner.pricelist.tree</field>
         <field name="model">res.partner.pricelist</field>
         <field name="arch" type="xml">
-            <tree string="Pricelist">
+            <tree string="Pricelist" editable="bottom">
                 <field name="partner_id" />
                 <field name="product_id" />
                 <field name="lst_price" />                
+                <field name="product_uom_qty" />
+                <button string="Generate order from pricelist" name="generate_purchase_order" type="object" icon="fa-stack-overflow"/>
             </tree>
         </field>
     </record>
