@@ -154,10 +154,11 @@ class ResPartnerPricelist(models.Model):
             'views': [(False, 'form'), (False, 'tree')],
             'domain': [],
             'context': self.env.context,
-            'target': 'current',
+            #'target': 'current',
+            'target': 'inline',
             'nodestroy': False,
-            'form_view_initial_mode': 'edit', 
-            'force_detailed_view': 'true',
+            #'form_view_initial_mode': 'edit', 
+            #'force_detailed_view': 'true',
             }
             
     # -------------------------------------------------------------------------
