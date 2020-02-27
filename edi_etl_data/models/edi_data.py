@@ -156,6 +156,8 @@ class ResPartnerPricelist(models.Model):
             'context': self.env.context,
             'target': 'current',
             'nodestroy': False,
+            'form_view_initial_mode': 'edit', 
+            'force_detailed_view': 'true',
             }
             
     # -------------------------------------------------------------------------
